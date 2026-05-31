@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maya — About Me</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ───── NAV ───── -->
+  <nav>
+    <span class="logo">✨ Maya</span>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#hobbies">Hobbies</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ───── HERO ───── -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <p class="greeting">Hey there, I'm</p>
+      <h1>Maya</h1>
+      <p class="tagline">Year 9 student · Acoustic guitar player · Movie buff 🎬</p>
+      <a href="#about" class="btn">Get to know me ↓</a>
+    </div>
+    <div class="hero-emoji">🎸</div>
+  </section>
+
+  <!-- ───── ABOUT ───── -->
+  <section id="about" class="about">
+    <h2>About Me</h2>
+    <div class="about-card">
+      <p>
+        Hi! I'm <strong>Maya</strong> and I'm currently in <strong>Year 9</strong>.
+        When I'm not hitting the books, you'll find me strumming my acoustic guitar
+        or binge-watching the latest movies. I love discovering new music, learning
+        new chords, and debating which film deserves the top spot on my all-time
+        favourites list.
+      </p>
+      <p>
+        I believe life is better with a good soundtrack and a great story. 🎶🍿
+      </p>
+    </div>
+  </section>
+
+  <!-- ───── HOBBIES ───── -->
+  <section id="hobbies" class="hobbies">
+    <h2>My Hobbies</h2>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-icon">🎸</div>
+        <h3>Acoustic Guitar</h3>
+        <p>
+          There's nothing quite like the warm sound of an acoustic guitar.
+          I'm always learning new songs and trying to write my own.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🎬</div>
+        <h3>Movies</h3>
+        <p>
+          From indie films to blockbusters, I love them all.
+          Ask me for a recommendation — I've always got one ready!
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📚</div>
+        <h3>Learning</h3>
+        <p>
+          Year 9 keeps me busy, but I genuinely enjoy picking up new skills
+          and exploring subjects that spark my curiosity.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ───── CONTACT ───── -->
+  <section id="contact" class="contact">
+    <h2>Say Hello 👋</h2>
+    <p>Want to chat about music, movies, or anything else? Drop me a message!</p>
+    <form onsubmit="handleSubmit(event)">
+      <input type="text" placeholder="Your name" required />
+      <input type="email" placeholder="Your email" required />
+      <textarea placeholder="Your message..." rows="4" required></textarea>
+      <button type="submit" class="btn">Send Message 🚀</button>
+    </form>
+    <p id="form-msg" class="form-msg"></p>
+  </section>
+
+  <!-- ───── FOOTER ───── -->
+  <footer>
+    <p>Made with 💜 by Maya · 2026</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
