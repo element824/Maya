@@ -1,39 +1,38 @@
-// Simple form handler (no backend — just shows a confirmation)
 function handleSubmit(e) {
   e.preventDefault();
-  const msg = document.getElementById('form-msg');
-  msg.textContent = 'Thanks for your message! 💜';
+  document.getElementById('form-msg').textContent = 'sent — talk soon';
   e.target.reset();
 }
 
-// Smooth reveal on scroll
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   },
-  { threshold: 0.15 }
+  { threshold: 0.1 }
 );
 
-document.querySelectorAll('section').forEach((sec) => {
-  sec.classList.add('fade-in');
-  observer.observe(sec);
+document.querySelectorAll('section, .grid-item').forEach((el) => {
+  el.classList.add('fade-in');
+  observer.observe(el);
 });
 
-// Add fade-in styles dynamically
-const style = document.createElement('style');
-style.textContent = `
+const s = document.createElement('style');
+s.textContent = `
   .fade-in {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
   }
   .fade-in.visible {
     opacity: 1;
     transform: translateY(0);
   }
+  .grid-item.fade-in { transition-delay: calc(var(--i, 0) * 0.1s); }
 `;
-document.head.appendChild(style);
+document.head.appendChild(s);
+
+document.querySelectorAll('.grid-item').forEach((item, i) => {
+  item.style.setProperty('--i', i);
+});
