@@ -33,6 +33,62 @@ body {
   background: var(--bg);
   line-height: 1.6;
   overflow-x: hidden;
+  /* side borders — colorful gradient rails */
+  border-left: 6px solid;
+  border-right: 6px solid;
+  border-image: linear-gradient(
+    180deg,
+    var(--pink) 0%,
+    var(--purple) 15%,
+    var(--blue) 30%,
+    var(--green) 45%,
+    var(--gold) 60%,
+    var(--orange) 75%,
+    var(--red) 85%,
+    var(--pink) 100%
+  ) 1;
+}
+
+/* colour splash blobs behind content */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(100px);
+  opacity: 0.12;
+}
+
+body::before {
+  width: 500px;
+  height: 500px;
+  background: var(--pink);
+  top: 10%;
+  left: -8%;
+  animation: blobDrift1 20s ease-in-out infinite alternate;
+}
+
+body::after {
+  width: 450px;
+  height: 450px;
+  background: var(--blue);
+  bottom: 15%;
+  right: -6%;
+  animation: blobDrift2 18s ease-in-out infinite alternate;
+}
+
+@keyframes blobDrift1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(60px, 80px) scale(1.15); }
+  100% { transform: translate(-30px, 160px) scale(0.95); }
+}
+
+@keyframes blobDrift2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-50px, -70px) scale(1.1); }
+  100% { transform: translate(40px, -140px) scale(0.9); }
 }
 
 /* ── Floating musical notes ── */
@@ -108,10 +164,14 @@ nav a:hover { color: var(--gold); }
   padding: 6rem 2rem 2rem;
   position: relative;
   background:
-    radial-gradient(ellipse at 20% 50%, rgba(192, 132, 252, 0.12) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 50%, rgba(255, 107, 157, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 15% 80%, rgba(255, 107, 157, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 85% 20%, rgba(192, 132, 252, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(103, 232, 249, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 70% 85%, rgba(251, 191, 36, 0.1) 0%, transparent 35%),
     var(--bg);
   border-bottom: 4px dashed var(--purple);
+  border-left: 4px solid var(--pink);
+  border-right: 4px solid var(--purple);
 }
 
 .hero h1 {
@@ -156,6 +216,8 @@ section {
   padding: 5rem 2rem;
   max-width: 960px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 h2 {
@@ -170,6 +232,14 @@ h2 {
 .music {
   position: relative;
   border-bottom: 4px dotted var(--gold);
+  border-left: 4px solid var(--gold);
+  border-right: 4px solid var(--orange);
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  background:
+    radial-gradient(circle at 10% 30%, rgba(251, 191, 36, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 90% 70%, rgba(251, 146, 60, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(192, 132, 252, 0.06) 0%, transparent 50%);
 }
 
 .music h2 { color: var(--gold); }
@@ -241,7 +311,15 @@ h2 {
 /* ── Movies Section ── */
 .movies {
   border-bottom: 4px solid var(--pink);
+  border-left: 4px solid var(--lala-gold);
+  border-right: 4px solid var(--red);
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
   padding-bottom: 4rem;
+  background:
+    radial-gradient(circle at 20% 60%, rgba(232, 184, 61, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(248, 113, 113, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 50% 10%, rgba(255, 107, 157, 0.06) 0%, transparent 50%);
 }
 
 .movies h2 {
@@ -342,8 +420,16 @@ h2 {
 /* ── Games Section ── */
 .games {
   border-bottom: 4px dashed var(--green);
+  border-left: 4px solid var(--mc-green);
+  border-right: 4px solid var(--red);
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
   padding-top: 3rem;
   padding-bottom: 4rem;
+  background:
+    radial-gradient(circle at 25% 50%, rgba(91, 135, 49, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 75% 50%, rgba(192, 57, 43, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(74, 237, 217, 0.06) 0%, transparent 40%);
 }
 
 .games-split {
@@ -488,6 +574,14 @@ h2 {
 /* ── Liminal Spaces ── */
 .liminal {
   border-bottom: 4px solid var(--blue);
+  border-left: 4px solid var(--blue);
+  border-right: 4px solid var(--purple);
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(103, 232, 249, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(192, 132, 252, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 40% 60%, rgba(74, 222, 128, 0.05) 0%, transparent 40%);
 }
 
 .liminal h2 { color: var(--blue); }
@@ -549,6 +643,13 @@ h2 {
 /* ── Contact ── */
 .contact {
   text-align: center;
+  border-left: 4px solid var(--purple);
+  border-right: 4px solid var(--pink);
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(192, 132, 252, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 70% 70%, rgba(255, 107, 157, 0.08) 0%, transparent 40%);
 }
 
 .contact h2 { color: var(--purple); }
@@ -613,6 +714,99 @@ footer {
   font-size: 0.9rem;
   color: var(--muted);
   border-top: 3px solid var(--border);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Colour Splash Dividers ── */
+.colour-splash {
+  height: 80px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.colour-splash::before,
+.colour-splash::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+}
+
+.splash-1::before {
+  width: 200px; height: 200px;
+  background: var(--pink);
+  opacity: 0.2;
+  left: 5%;
+  top: -60px;
+}
+.splash-1::after {
+  width: 180px; height: 180px;
+  background: var(--gold);
+  opacity: 0.15;
+  right: 10%;
+  top: -40px;
+}
+
+.splash-2::before {
+  width: 250px; height: 250px;
+  background: var(--purple);
+  opacity: 0.18;
+  right: 5%;
+  top: -80px;
+}
+.splash-2::after {
+  width: 160px; height: 160px;
+  background: var(--blue);
+  opacity: 0.15;
+  left: 15%;
+  top: -30px;
+}
+
+.splash-3::before {
+  width: 220px; height: 220px;
+  background: var(--gold);
+  opacity: 0.18;
+  left: 20%;
+  top: -70px;
+}
+.splash-3::after {
+  width: 190px; height: 190px;
+  background: var(--green);
+  opacity: 0.15;
+  right: 15%;
+  top: -50px;
+}
+
+.splash-4::before {
+  width: 200px; height: 200px;
+  background: var(--orange);
+  opacity: 0.18;
+  left: 8%;
+  top: -60px;
+}
+.splash-4::after {
+  width: 230px; height: 230px;
+  background: var(--pink);
+  opacity: 0.12;
+  right: 5%;
+  top: -80px;
+}
+
+.splash-5::before {
+  width: 180px; height: 180px;
+  background: var(--blue);
+  opacity: 0.2;
+  left: 30%;
+  top: -50px;
+}
+.splash-5::after {
+  width: 200px; height: 200px;
+  background: var(--purple);
+  opacity: 0.15;
+  right: 20%;
+  top: -70px;
 }
 
 /* ── Responsive ── */
