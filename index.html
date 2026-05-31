@@ -11,6 +11,25 @@
 </head>
 <body>
 
+  <!-- full-page dreamcore layers -->
+  <div class="dream-bg" aria-hidden="true">
+    <div class="dream-sky"></div>
+    <div class="dream-checker"></div>
+    <div class="dream-cloud dc1"></div>
+    <div class="dream-cloud dc2"></div>
+    <div class="dream-cloud dc3"></div>
+    <div class="dream-cloud dc4"></div>
+    <div class="dream-cloud dc5"></div>
+    <div class="dream-cloud dc6"></div>
+    <div class="dream-cloud dc7"></div>
+    <div class="dream-orb orb1"></div>
+    <div class="dream-orb orb2"></div>
+    <div class="dream-orb orb3"></div>
+    <div class="dream-orb orb4"></div>
+    <div class="dream-orb orb5"></div>
+    <div class="dream-haze"></div>
+  </div>
+
   <div class="floating-notes" aria-hidden="true">
     <span class="note n1">♪</span>
     <span class="note n2">♫</span>
@@ -29,6 +48,7 @@
       <li><a href="#music">Music</a></li>
       <li><a href="#movies">Movies</a></li>
       <li><a href="#games">Games</a></li>
+      <li><a href="#pacman">Pac-Man</a></li>
       <li><a href="#liminal">Liminal</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -36,15 +56,6 @@
 
   <!-- HERO -->
   <section id="home" class="hero">
-    <div class="dreamcore-sky"></div>
-    <div class="dreamcore-clouds">
-      <div class="cloud c1"></div>
-      <div class="cloud c2"></div>
-      <div class="cloud c3"></div>
-      <div class="cloud c4"></div>
-      <div class="cloud c5"></div>
-    </div>
-    <div class="dreamcore-floor"></div>
     <div class="hero-content">
       <div class="profile-ring">
         <img src="profile.png" alt="Maya" class="profile-pic" />
@@ -118,7 +129,6 @@
   <!-- GAMES -->
   <section id="games" class="games">
     <div class="games-split">
-
       <div class="game-panel minecraft-panel">
         <div class="pixel-border">
           <h3>Minecraft</h3>
@@ -136,7 +146,6 @@
           <p class="mc-text">building worlds, one block at a time</p>
         </div>
       </div>
-
       <div class="game-panel fnaf-panel">
         <div class="fnaf-border">
           <h3>Five Nights at Freddy's</h3>
@@ -147,7 +156,21 @@
           <p class="fnaf-text">it's me.</p>
         </div>
       </div>
+    </div>
+  </section>
 
+  <div class="colour-splash splash-6"></div>
+
+  <!-- PAC-MAN -->
+  <section id="pacman" class="pacman-section">
+    <h2>Pac-Man</h2>
+    <div class="pacman-wrapper">
+      <div class="pacman-hud">
+        <span>Score: <strong id="pac-score">0</strong></span>
+        <span>Lives: <strong id="pac-lives">3</strong></span>
+      </div>
+      <canvas id="pacman-canvas" width="420" height="420"></canvas>
+      <p class="pacman-hint">Arrow keys or WASD to move · Click canvas to start</p>
     </div>
   </section>
 
@@ -194,6 +217,7 @@
     <p>♩ maya — 2026 ♩</p>
   </footer>
 
+  <script src="pacman.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

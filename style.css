@@ -30,14 +30,9 @@ html { scroll-behavior: smooth; }
 body {
   font-family: 'Fredoka', sans-serif;
   color: var(--text);
-  background:
-    radial-gradient(ellipse at 20% 30%, rgba(124, 58, 237, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 70%, rgba(255, 107, 157, 0.05) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 90%, rgba(103, 232, 249, 0.04) 0%, transparent 50%),
-    var(--bg);
+  background: #0a0612;
   line-height: 1.6;
   overflow-x: hidden;
-  /* side borders — colorful gradient rails */
   border-left: 6px solid;
   border-right: 6px solid;
   border-image: linear-gradient(
@@ -53,46 +48,98 @@ body {
   ) 1;
 }
 
-/* colour splash blobs behind content */
-body::before,
-body::after {
-  content: '';
+/* ── Full-page dreamcore background ── */
+.dream-bg {
   position: fixed;
-  border-radius: 50%;
-  pointer-events: none;
+  inset: 0;
   z-index: 0;
-  filter: blur(100px);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.dream-sky {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    #1a0a2e 0%,
+    #2e1065 8%,
+    #4c1d95 18%,
+    #7c3aed 28%,
+    #a78bfa 38%,
+    #e9d5ff 46%,
+    #fecdd3 54%,
+    #fef3c7 62%,
+    #d9f99d 72%,
+    #a7f3d0 80%,
+    #67e8f9 88%,
+    #c084fc 96%
+  );
+  opacity: 0.2;
+}
+
+.dream-checker {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-conic-gradient(
+      rgba(192, 132, 252, 0.06) 0% 25%,
+      rgba(103, 232, 249, 0.03) 0% 50%
+    ) 0 0 / 80px 80px;
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0.15) 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0.15) 70%, transparent 100%);
+}
+
+.dream-cloud {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
   opacity: 0.12;
 }
 
-body::before {
-  width: 500px;
-  height: 500px;
-  background: var(--pink);
-  top: 10%;
-  left: -8%;
-  animation: blobDrift1 20s ease-in-out infinite alternate;
+.dc1 { width: 500px; height: 180px; background: #fecdd3; top: 5%;  left: -5%;  animation: dcloud 30s ease-in-out infinite alternate; }
+.dc2 { width: 400px; height: 150px; background: #e9d5ff; top: 15%; right: -8%; animation: dcloud 25s ease-in-out infinite alternate-reverse; }
+.dc3 { width: 450px; height: 160px; background: #bfdbfe; top: 35%; left: 10%;  animation: dcloud 28s ease-in-out infinite alternate; }
+.dc4 { width: 350px; height: 130px; background: #fef3c7; top: 50%; right: 5%;  animation: dcloud 32s ease-in-out infinite alternate-reverse; }
+.dc5 { width: 500px; height: 170px; background: #d9f99d; top: 65%; left: -3%;  animation: dcloud 27s ease-in-out infinite alternate; }
+.dc6 { width: 380px; height: 140px; background: #fecdd3; top: 78%; right: 0%;  animation: dcloud 24s ease-in-out infinite alternate-reverse; }
+.dc7 { width: 420px; height: 155px; background: #c4b5fd; top: 90%; left: 15%;  animation: dcloud 29s ease-in-out infinite alternate; }
+
+@keyframes dcloud {
+  0%   { transform: translateX(0) translateY(0) scale(1); }
+  33%  { transform: translateX(80px) translateY(-15px) scale(1.08); }
+  66%  { transform: translateX(-40px) translateY(10px) scale(0.95); }
+  100% { transform: translateX(50px) translateY(-20px) scale(1.05); }
 }
 
-body::after {
-  width: 450px;
-  height: 450px;
-  background: var(--blue);
-  bottom: 15%;
-  right: -6%;
-  animation: blobDrift2 18s ease-in-out infinite alternate;
+/* glowing orbs drifting */
+.dream-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  animation: orbFloat linear infinite;
 }
 
-@keyframes blobDrift1 {
-  0%   { transform: translate(0, 0) scale(1); }
-  50%  { transform: translate(60px, 80px) scale(1.15); }
-  100% { transform: translate(-30px, 160px) scale(0.95); }
+.orb1 { width: 120px; height: 120px; background: var(--pink);   left: 8%;  opacity: 0.15; animation-duration: 18s; }
+.orb2 { width: 90px;  height: 90px;  background: var(--blue);   left: 45%; opacity: 0.12; animation-duration: 22s; animation-delay: 3s; }
+.orb3 { width: 100px; height: 100px; background: var(--gold);   left: 75%; opacity: 0.13; animation-duration: 20s; animation-delay: 6s; }
+.orb4 { width: 80px;  height: 80px;  background: var(--green);  left: 25%; opacity: 0.1;  animation-duration: 24s; animation-delay: 9s; }
+.orb5 { width: 110px; height: 110px; background: var(--purple); left: 60%; opacity: 0.14; animation-duration: 19s; animation-delay: 2s; }
+
+@keyframes orbFloat {
+  0%   { top: 105%; transform: translateX(0); }
+  100% { top: -15%; transform: translateX(60px); }
 }
 
-@keyframes blobDrift2 {
-  0%   { transform: translate(0, 0) scale(1); }
-  50%  { transform: translate(-50px, -70px) scale(1.1); }
-  100% { transform: translate(40px, -140px) scale(0.9); }
+/* dreamy haze layer */
+.dream-haze {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 40%, rgba(255, 107, 157, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 60%, rgba(103, 232, 249, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(251, 191, 36, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 30% 20%, rgba(192, 132, 252, 0.07) 0%, transparent 50%);
 }
 
 /* ── Floating musical notes ── */
@@ -171,74 +218,6 @@ nav a:hover { color: var(--gold); }
   border-bottom: 4px dashed var(--purple);
   border-left: 4px solid var(--pink);
   border-right: 4px solid var(--purple);
-}
-
-/* dreamcore sky — soft surreal gradient */
-.dreamcore-sky {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(
-      180deg,
-      #2e1065 0%,
-      #4c1d95 10%,
-      #7c3aed 20%,
-      #c084fc 32%,
-      #f0abfc 42%,
-      #fecdd3 52%,
-      #fef3c7 62%,
-      #bef264 74%,
-      #67e8f9 86%,
-      #a78bfa 100%
-    );
-  opacity: 0.35;
-  z-index: 0;
-}
-
-/* soft floating clouds */
-.dreamcore-clouds {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.cloud {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(50px);
-  opacity: 0.25;
-}
-
-.c1 { width: 300px; height: 120px; background: #fecdd3; top: 15%; left: -5%; animation: cloudFloat 25s ease-in-out infinite alternate; }
-.c2 { width: 250px; height: 100px; background: #e9d5ff; top: 25%; right: -8%; animation: cloudFloat 30s ease-in-out infinite alternate-reverse; }
-.c3 { width: 350px; height: 130px; background: #bfdbfe; top: 40%; left: 20%; animation: cloudFloat 22s ease-in-out infinite alternate; }
-.c4 { width: 200px; height: 90px; background: #fef3c7; top: 55%; right: 15%; animation: cloudFloat 28s ease-in-out infinite alternate-reverse; }
-.c5 { width: 280px; height: 110px; background: #d9f99d; top: 70%; left: 10%; animation: cloudFloat 26s ease-in-out infinite alternate; }
-
-@keyframes cloudFloat {
-  0%   { transform: translateX(0) translateY(0); }
-  50%  { transform: translateX(60px) translateY(-20px); }
-  100% { transform: translateX(-40px) translateY(10px); }
-}
-
-/* checkerboard floor — classic dreamcore */
-.dreamcore-floor {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 30%;
-  z-index: 1;
-  background:
-    linear-gradient(180deg, transparent 0%, rgba(28, 16, 40, 0.6) 40%),
-    repeating-conic-gradient(
-      rgba(192, 132, 252, 0.12) 0% 25%,
-      rgba(255, 107, 157, 0.06) 0% 50%
-    ) 0 0 / 60px 60px;
-  transform: perspective(400px) rotateX(45deg);
-  transform-origin: bottom center;
 }
 
 /* profile pic */
@@ -897,12 +876,78 @@ footer {
   top: -70px;
 }
 
+.splash-6::before {
+  width: 220px; height: 220px;
+  background: var(--gold);
+  opacity: 0.2;
+  left: 10%;
+  top: -70px;
+}
+.splash-6::after {
+  width: 180px; height: 180px;
+  background: var(--green);
+  opacity: 0.15;
+  right: 12%;
+  top: -50px;
+}
+
+/* ── Pac-Man Section ── */
+.pacman-section {
+  text-align: center;
+  border-left: 4px solid var(--gold);
+  border-right: 4px solid var(--blue);
+  border-bottom: 4px solid var(--gold);
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(251, 191, 36, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 70% 60%, rgba(103, 232, 249, 0.08) 0%, transparent 40%);
+}
+
+.pacman-section h2 { color: var(--gold); }
+
+.pacman-wrapper {
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+.pacman-hud {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem 1.2rem;
+  margin-bottom: 0.5rem;
+  border: 3px solid var(--gold);
+  border-radius: 10px 10px 0 0;
+  background: rgba(0, 0, 0, 0.5);
+  font-family: 'Silkscreen', cursive;
+  font-size: 0.9rem;
+  color: var(--gold);
+}
+
+#pacman-canvas {
+  display: block;
+  margin: 0 auto;
+  border: 3px solid var(--gold);
+  border-radius: 0 0 10px 10px;
+  background: #000;
+  cursor: pointer;
+  max-width: 100%;
+}
+
+.pacman-hint {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1rem;
+  color: var(--muted);
+  margin-top: 1rem;
+}
+
 /* ── Responsive ── */
 @media (max-width: 640px) {
   .hero h1 { font-size: 4rem; }
   nav { padding: 0.8rem 1rem; }
-  nav ul { gap: 0.8rem; }
-  nav a { font-size: 0.8rem; }
+  nav ul { gap: 0.6rem; font-size: 0.75rem; }
+  nav a { font-size: 0.75rem; }
   .mc-blocks { grid-template-columns: repeat(3, 40px); }
   .mc-block { width: 40px; height: 40px; }
+  #pacman-canvas { width: 100%; height: auto; }
 }
