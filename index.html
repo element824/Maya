@@ -7,66 +7,169 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Patrick+Hand&family=Silkscreen&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-  <div class="grain"></div>
+  <div class="floating-notes" aria-hidden="true">
+    <span class="note n1">♪</span>
+    <span class="note n2">♫</span>
+    <span class="note n3">♩</span>
+    <span class="note n4">♬</span>
+    <span class="note n5">♪</span>
+    <span class="note n6">♫</span>
+    <span class="note n7">♩</span>
+    <span class="note n8">♬</span>
+  </div>
 
   <nav>
-    <span class="logo">maya.</span>
+    <span class="logo">♫ Maya</span>
     <ul>
-      <li><a href="#home">home</a></li>
-      <li><a href="#gallery">gallery</a></li>
-      <li><a href="#contact">contact</a></li>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#music">Music</a></li>
+      <li><a href="#movies">Movies</a></li>
+      <li><a href="#games">Games</a></li>
+      <li><a href="#liminal">Liminal</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
+  <!-- HERO -->
   <section id="home" class="hero">
     <div class="hero-content">
       <h1>Maya</h1>
-      <div class="marquee">
-        <span>welcome — welcome — welcome — welcome — welcome —&nbsp;</span>
-        <span>welcome — welcome — welcome — welcome — welcome —&nbsp;</span>
+      <p class="subtitle">♩ welcome to my corner of the internet ♩</p>
+    </div>
+    <div class="hero-notes">♪ ♫ ♬ ♩ ♪ ♫</div>
+  </section>
+
+  <!-- MUSIC -->
+  <section id="music" class="music">
+    <h2>♫ Music ♫</h2>
+    <div class="music-grid">
+      <div class="music-card">
+        <div class="vinyl">
+          <div class="vinyl-inner"></div>
+        </div>
+        <p>good vibes only</p>
+      </div>
+      <div class="music-card">
+        <div class="vinyl">
+          <div class="vinyl-inner"></div>
+        </div>
+        <p>late night jams</p>
+      </div>
+      <div class="music-card">
+        <div class="vinyl">
+          <div class="vinyl-inner"></div>
+        </div>
+        <p>feel-good tracks</p>
+      </div>
+    </div>
+    <div class="staff-lines" aria-hidden="true">
+      <div class="staff-note" style="--x: 10%; --y: 30%;">♪</div>
+      <div class="staff-note" style="--x: 25%; --y: 60%;">♫</div>
+      <div class="staff-note" style="--x: 50%; --y: 20%;">♬</div>
+      <div class="staff-note" style="--x: 70%; --y: 50%;">♩</div>
+      <div class="staff-note" style="--x: 90%; --y: 35%;">♪</div>
+    </div>
+  </section>
+
+  <!-- MOVIES -->
+  <section id="movies" class="movies">
+    <h2>Now Showing</h2>
+    <div class="movie-cards">
+      <div class="movie-card lalaland">
+        <div class="movie-poster">
+          <div class="stars-bg"></div>
+          <span class="movie-icon">💫</span>
+        </div>
+        <h3>La La Land</h3>
+        <p class="movie-quote">"City of stars, are you shining just for me?"</p>
+      </div>
+      <div class="movie-card knivesout">
+        <div class="movie-poster">
+          <span class="movie-icon">🔪</span>
+        </div>
+        <h3>Knives Out</h3>
+        <p class="movie-quote">"I suspect foul play. I have eliminated no suspects."</p>
       </div>
     </div>
   </section>
 
-  <section id="gallery" class="gallery">
-    <h2>gallery</h2>
-    <div class="grid">
-      <div class="grid-item">
-        <div class="placeholder-img" style="--hue: 25;"></div>
-        <p class="caption">no. 01</p>
+  <!-- GAMES -->
+  <section id="games" class="games">
+    <div class="games-split">
+
+      <div class="game-panel minecraft-panel">
+        <div class="pixel-border">
+          <h3>Minecraft</h3>
+          <div class="mc-blocks">
+            <div class="mc-block dirt"></div>
+            <div class="mc-block grass"></div>
+            <div class="mc-block stone"></div>
+            <div class="mc-block diamond"></div>
+            <div class="mc-block grass"></div>
+            <div class="mc-block dirt"></div>
+            <div class="mc-block diamond"></div>
+            <div class="mc-block stone"></div>
+            <div class="mc-block grass"></div>
+          </div>
+          <p class="mc-text">building worlds, one block at a time</p>
+        </div>
       </div>
-      <div class="grid-item">
-        <div class="placeholder-img" style="--hue: 340;"></div>
-        <p class="caption">no. 02</p>
+
+      <div class="game-panel fnaf-panel">
+        <div class="fnaf-border">
+          <h3>Five Nights at Freddy's</h3>
+          <div class="fnaf-scene">
+            <div class="fnaf-static"></div>
+            <span class="fnaf-eyes">👀</span>
+          </div>
+          <p class="fnaf-text">it's me.</p>
+        </div>
       </div>
-      <div class="grid-item">
-        <div class="placeholder-img" style="--hue: 200;"></div>
-        <p class="caption">no. 03</p>
+
+    </div>
+  </section>
+
+  <!-- LIMINAL SPACES -->
+  <section id="liminal" class="liminal">
+    <h2>Liminal Spaces</h2>
+    <div class="liminal-grid">
+      <div class="liminal-card">
+        <div class="liminal-img hall"></div>
+        <p>the hallway that never ends</p>
       </div>
-      <div class="grid-item">
-        <div class="placeholder-img" style="--hue: 55;"></div>
-        <p class="caption">no. 04</p>
+      <div class="liminal-card">
+        <div class="liminal-img pool"></div>
+        <p>3am swim, nobody's here</p>
+      </div>
+      <div class="liminal-card">
+        <div class="liminal-img mall"></div>
+        <p>closed since '04</p>
+      </div>
+      <div class="liminal-card">
+        <div class="liminal-img stairs"></div>
+        <p>going somewhere, maybe</p>
       </div>
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section id="contact" class="contact">
-    <h2>say hi</h2>
+    <h2>♫ Say Hi ♫</h2>
     <form onsubmit="handleSubmit(event)">
-      <input type="text" placeholder="name" required />
-      <input type="email" placeholder="email" required />
-      <textarea placeholder="message" rows="4" required></textarea>
-      <button type="submit" class="btn">send</button>
+      <input type="text" placeholder="your name" required />
+      <input type="email" placeholder="your email" required />
+      <textarea placeholder="leave a note..." rows="4" required></textarea>
+      <button type="submit" class="btn">Send ♪</button>
     </form>
     <p id="form-msg" class="form-msg"></p>
   </section>
 
   <footer>
-    <p>maya — 2026</p>
+    <p>♩ maya — 2026 ♩</p>
   </footer>
 
   <script src="script.js"></script>

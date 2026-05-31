@@ -1,42 +1,72 @@
+/* ============================
+   Maya's Site — Full Redesign
+   ============================ */
+
 :root {
-  --bg:      #1a1714;
-  --surface: #242019;
-  --text:    #e8e0d4;
-  --muted:   #8a7f72;
-  --accent:  #d4a574;
-  --accent2: #c47d5e;
-  --radius:  4px;
+  --bg:        #1c1028;
+  --surface:   #261838;
+  --pink:      #ff6b9d;
+  --purple:    #c084fc;
+  --blue:      #67e8f9;
+  --gold:      #fbbf24;
+  --green:     #4ade80;
+  --orange:    #fb923c;
+  --red:       #f87171;
+  --text:      #f0e6ff;
+  --muted:     #a78bba;
+  --border:    #7c3aed;
+  --mc-green:  #5b8731;
+  --mc-brown:  #8b6340;
+  --mc-stone:  #7f7f7f;
+  --mc-diamond:#4aedd9;
+  --fnaf-dark: #0d0d0d;
+  --lala-navy: #1a1150;
+  --lala-gold: #e8b83d;
 }
 
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Space Mono', monospace;
+  font-family: 'Fredoka', sans-serif;
   color: var(--text);
   background: var(--bg);
   line-height: 1.6;
   overflow-x: hidden;
 }
 
-/* film grain overlay */
-.grain {
+/* ── Floating musical notes ── */
+.floating-notes {
   position: fixed;
   inset: 0;
-  z-index: 9999;
   pointer-events: none;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 180px;
+  z-index: 9999;
 }
 
-/* ── nav ── */
+.note {
+  position: absolute;
+  font-size: 1.6rem;
+  opacity: 0.15;
+  animation: drift linear infinite;
+}
+
+.n1 { left: 5%;  color: var(--pink);   animation-duration: 14s; font-size: 2rem; }
+.n2 { left: 15%; color: var(--purple); animation-duration: 11s; animation-delay: 2s; }
+.n3 { left: 30%; color: var(--gold);   animation-duration: 16s; animation-delay: 4s; }
+.n4 { left: 45%; color: var(--blue);   animation-duration: 13s; animation-delay: 1s; }
+.n5 { left: 60%; color: var(--green);  animation-duration: 15s; animation-delay: 3s; }
+.n6 { left: 72%; color: var(--orange); animation-duration: 12s; animation-delay: 5s; }
+.n7 { left: 85%; color: var(--pink);   animation-duration: 17s; animation-delay: 2s; font-size: 2.2rem; }
+.n8 { left: 93%; color: var(--purple); animation-duration: 10s; animation-delay: 6s; }
+
+@keyframes drift {
+  0%   { top: 110%; opacity: 0; transform: rotate(0deg) translateX(0); }
+  10%  { opacity: 0.2; }
+  90%  { opacity: 0.15; }
+  100% { top: -10%; opacity: 0; transform: rotate(360deg) translateX(40px); }
+}
+
+/* ── Nav ── */
 nav {
   position: fixed;
   top: 0;
@@ -44,142 +74,484 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 2.5rem;
-  background: rgba(26, 23, 20, 0.8);
+  padding: 1rem 2rem;
+  background: rgba(28, 16, 40, 0.85);
   backdrop-filter: blur(12px);
   z-index: 100;
-  border-bottom: 1px solid rgba(212, 165, 116, 0.1);
+  border-bottom: 3px solid var(--border);
 }
 
 .logo {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--accent);
-  letter-spacing: 2px;
-  text-transform: lowercase;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--pink);
 }
 
-nav ul { list-style: none; display: flex; gap: 2rem; }
+nav ul { list-style: none; display: flex; gap: 1.4rem; flex-wrap: wrap; }
 
 nav a {
   text-decoration: none;
   color: var(--muted);
-  font-size: 0.8rem;
-  letter-spacing: 1.5px;
-  text-transform: lowercase;
+  font-weight: 500;
   transition: color 0.3s;
 }
+nav a:hover { color: var(--gold); }
 
-nav a:hover { color: var(--accent); }
-
-/* ── hero ── */
+/* ── Hero ── */
 .hero {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   padding: 6rem 2rem 2rem;
   position: relative;
-  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(192, 132, 252, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 50%, rgba(255, 107, 157, 0.1) 0%, transparent 50%),
+    var(--bg);
+  border-bottom: 4px dashed var(--purple);
 }
-
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 50% 40%, rgba(212, 165, 116, 0.08) 0%, transparent 70%);
-}
-
-.hero-content { z-index: 1; }
 
 .hero h1 {
-  font-family: 'Syne', sans-serif;
-  font-size: 8rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 12px;
-  color: var(--text);
-  line-height: 1;
-  margin-bottom: 1.5rem;
+  font-size: 7rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue), var(--gold));
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 6s ease-in-out infinite;
 }
 
-/* scrolling marquee */
-.marquee {
-  overflow: hidden;
-  white-space: nowrap;
-  border-top: 1px solid rgba(212, 165, 116, 0.2);
-  border-bottom: 1px solid rgba(212, 165, 116, 0.2);
-  padding: 0.6rem 0;
-  margin-top: 1rem;
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
 }
 
-.marquee span {
-  display: inline-block;
-  font-size: 0.75rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
+.subtitle {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.4rem;
   color: var(--muted);
-  animation: scroll 12s linear infinite;
+  margin-top: 0.5rem;
 }
 
-@keyframes scroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
+.hero-notes {
+  margin-top: 2rem;
+  font-size: 2rem;
+  letter-spacing: 12px;
+  color: var(--purple);
+  opacity: 0.4;
+  animation: pulse 3s ease-in-out infinite;
 }
 
-/* ── sections ── */
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50%      { opacity: 0.6; }
+}
+
+/* ── Shared section ── */
 section {
-  padding: 6rem 2rem;
-  max-width: 900px;
+  padding: 5rem 2rem;
+  max-width: 960px;
   margin: 0 auto;
 }
 
 h2 {
-  font-family: 'Syne', sans-serif;
-  font-size: 2rem;
-  font-weight: 800;
-  text-transform: lowercase;
-  letter-spacing: 4px;
+  font-size: 2.4rem;
+  font-weight: 700;
   text-align: center;
-  margin-bottom: 3rem;
-  color: var(--accent);
+  margin-bottom: 2.5rem;
+  color: var(--pink);
 }
 
-/* ── gallery ── */
-.grid {
+/* ── Music Section ── */
+.music {
+  position: relative;
+  border-bottom: 4px dotted var(--gold);
+}
+
+.music h2 { color: var(--gold); }
+
+.music-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.music-card {
+  text-align: center;
+  padding: 2rem;
+  border: 3px solid var(--purple);
+  border-radius: 16px;
+  background: var(--surface);
+  transition: transform 0.3s, border-color 0.3s;
+}
+.music-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+}
+
+.vinyl {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #222, #444, #222, #444, #222);
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: spin 4s linear infinite;
+  border: 3px solid var(--purple);
+}
+
+.vinyl-inner {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--surface);
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.music-card p {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+.staff-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.staff-note {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  font-size: 1.8rem;
+  color: var(--gold);
+  opacity: 0.1;
+}
+
+/* ── Movies Section ── */
+.movies {
+  border-bottom: 4px solid var(--pink);
+  padding-bottom: 4rem;
+}
+
+.movies h2 {
+  color: var(--lala-gold);
+  font-family: 'Patrick Hand', cursive;
+  font-size: 2.8rem;
+}
+
+.movie-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.movie-card {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 3px solid;
+  transition: transform 0.3s;
+}
+.movie-card:hover { transform: scale(1.02); }
+
+.movie-poster {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.movie-icon { font-size: 4rem; z-index: 1; }
+
+/* La La Land card */
+.lalaland {
+  border-color: var(--lala-gold);
+  background: linear-gradient(135deg, var(--lala-navy), #2a1a6e);
+}
+
+.lalaland .movie-poster {
+  background: linear-gradient(180deg, #0c0a2e 0%, #1a1150 40%, #3b2090 70%, #e8b83d 100%);
+}
+
+.stars-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, white, transparent),
+    radial-gradient(1.5px 1.5px at 30% 15%, white, transparent),
+    radial-gradient(1px 1px at 50% 25%, white, transparent),
+    radial-gradient(1.5px 1.5px at 70% 10%, white, transparent),
+    radial-gradient(1px 1px at 85% 30%, white, transparent),
+    radial-gradient(1px 1px at 20% 40%, white, transparent),
+    radial-gradient(1.5px 1.5px at 60% 35%, white, transparent),
+    radial-gradient(1px 1px at 90% 20%, white, transparent);
+  opacity: 0.7;
+}
+
+.lalaland h3 {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.6rem;
+  color: var(--lala-gold);
+  padding: 1rem 1.5rem 0.3rem;
+}
+
+.lalaland .movie-quote {
+  font-family: 'Patrick Hand', cursive;
+  padding: 0 1.5rem 1.5rem;
+  color: #b8a0d4;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+/* Knives Out card */
+.knivesout {
+  border-color: var(--red);
+  background: linear-gradient(135deg, #1a0a0a, #2d1414);
+}
+
+.knivesout .movie-poster {
+  background: repeating-conic-gradient(#1a0808 0% 25%, #2a1010 0% 50%) 50% / 40px 40px;
+}
+
+.knivesout h3 {
+  font-size: 1.4rem;
+  color: var(--red);
+  padding: 1rem 1.5rem 0.3rem;
+}
+
+.knivesout .movie-quote {
+  font-family: 'Patrick Hand', cursive;
+  padding: 0 1.5rem 1.5rem;
+  color: #c4a0a0;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+/* ── Games Section ── */
+.games {
+  border-bottom: 4px dashed var(--green);
+  padding-top: 3rem;
+  padding-bottom: 4rem;
+}
+
+.games-split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* Minecraft panel */
+.minecraft-panel {
+  background: var(--surface);
+}
+
+.pixel-border {
+  border: 4px solid var(--mc-green);
+  border-radius: 4px;
+  padding: 2rem;
+  text-align: center;
+  image-rendering: pixelated;
+}
+
+.pixel-border h3 {
+  font-family: 'Silkscreen', cursive;
+  font-size: 1.6rem;
+  color: var(--mc-green);
+  margin-bottom: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.mc-blocks {
+  display: grid;
+  grid-template-columns: repeat(3, 50px);
+  gap: 4px;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+}
+
+.mc-block {
+  width: 50px;
+  height: 50px;
+  border: 2px solid rgba(0,0,0,0.3);
+  image-rendering: pixelated;
+}
+
+.mc-block.dirt    { background: var(--mc-brown); }
+.mc-block.grass   { background: linear-gradient(to bottom, var(--mc-green) 35%, var(--mc-brown) 35%); }
+.mc-block.stone   { background: var(--mc-stone); }
+.mc-block.diamond { background: var(--mc-diamond); animation: glow 2s ease-in-out infinite alternate; }
+
+@keyframes glow {
+  from { box-shadow: 0 0 4px var(--mc-diamond); }
+  to   { box-shadow: 0 0 16px var(--mc-diamond), 0 0 30px rgba(74, 237, 217, 0.3); }
+}
+
+.mc-text {
+  font-family: 'Silkscreen', cursive;
+  font-size: 0.8rem;
+  color: var(--mc-green);
+  letter-spacing: 1px;
+}
+
+/* FNAF panel */
+.fnaf-panel {
+  background: var(--fnaf-dark);
+}
+
+.fnaf-border {
+  border: 4px solid #555;
+  border-radius: 4px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.fnaf-border h3 {
+  font-size: 1.3rem;
+  color: #c0392b;
+  margin-bottom: 1.2rem;
+  text-shadow: 0 0 10px rgba(192, 57, 43, 0.5);
+}
+
+.fnaf-scene {
+  width: 160px;
+  height: 120px;
+  margin: 0 auto 1rem;
+  background: #0a0a0a;
+  border: 3px solid #333;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fnaf-static {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255,255,255,0.02) 2px,
+    rgba(255,255,255,0.02) 4px
+  );
+  animation: flicker 0.1s infinite;
+}
+
+@keyframes flicker {
+  0%  { opacity: 0.4; }
+  50% { opacity: 0.8; }
+  100%{ opacity: 0.3; }
+}
+
+.fnaf-eyes {
+  font-size: 2rem;
+  z-index: 1;
+  animation: stare 4s ease-in-out infinite;
+}
+
+@keyframes stare {
+  0%, 80%, 100% { opacity: 0; }
+  85%, 95%      { opacity: 1; }
+}
+
+.fnaf-text {
+  font-size: 1.2rem;
+  color: #c0392b;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  animation: glitch 3s infinite;
+}
+
+@keyframes glitch {
+  0%, 90%, 100% { transform: none; opacity: 0.8; }
+  92% { transform: translate(-2px, 1px); opacity: 1; }
+  94% { transform: translate(2px, -1px); opacity: 0.6; }
+  96% { transform: translate(-1px, 2px); opacity: 1; }
+}
+
+/* ── Liminal Spaces ── */
+.liminal {
+  border-bottom: 4px solid var(--blue);
+}
+
+.liminal h2 { color: var(--blue); }
+
+.liminal-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.2rem;
 }
 
-.grid-item { text-align: center; }
+.liminal-card {
+  text-align: center;
+  border: 2px solid rgba(103, 232, 249, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.liminal-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--blue);
+}
 
-.placeholder-img {
+.liminal-img {
   width: 100%;
-  aspect-ratio: 3 / 4;
-  border-radius: var(--radius);
-  background: hsl(var(--hue), 15%, 18%);
-  border: 1px solid rgba(212, 165, 116, 0.12);
-  transition: transform 0.4s, border-color 0.3s;
+  height: 180px;
+  position: relative;
 }
 
-.grid-item:hover .placeholder-img {
-  transform: scale(1.03);
-  border-color: var(--accent);
+.liminal-img.hall {
+  background: linear-gradient(
+    180deg,
+    #e8dcc8 0%, #d4c4a0 20%, #c4b48e 40%,
+    #b0a070 100%
+  );
+  background-image:
+    repeating-linear-gradient(90deg, transparent, transparent 48%, #a09060 48%, #a09060 52%, transparent 52%),
+    linear-gradient(180deg, #e8dcc8, #b0a070);
 }
 
-.caption {
-  margin-top: 0.6rem;
-  font-size: 0.7rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+.liminal-img.pool {
+  background: linear-gradient(180deg, #1a3040 0%, #2a6080 40%, #40b0d0 70%, #60d0e0 100%);
+}
+
+.liminal-img.mall {
+  background: linear-gradient(180deg, #f0e8d8 0%, #e0d4c0 50%, #c8b898 100%);
+}
+
+.liminal-img.stairs {
+  background: linear-gradient(180deg, #2a2a2a 0%, #3a3a3a 50%, #1a1a1a 100%);
+}
+
+.liminal-card p {
+  font-family: 'Patrick Hand', cursive;
+  padding: 0.8rem;
+  font-size: 0.95rem;
   color: var(--muted);
 }
 
-/* ── contact ── */
-.contact { text-align: center; }
+/* ── Contact ── */
+.contact {
+  text-align: center;
+}
+
+.contact h2 { color: var(--purple); }
 
 form {
   display: flex;
@@ -191,67 +563,64 @@ form {
 
 input, textarea {
   padding: 0.9rem 1rem;
-  border: 1px solid rgba(212, 165, 116, 0.15);
-  border-radius: var(--radius);
+  border: 3px solid var(--border);
+  border-radius: 10px;
   background: var(--surface);
   color: var(--text);
-  font-family: 'Space Mono', monospace;
-  font-size: 0.85rem;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.95rem;
   outline: none;
   transition: border-color 0.3s;
 }
 
 input::placeholder, textarea::placeholder {
   color: var(--muted);
-  letter-spacing: 1px;
-  text-transform: lowercase;
 }
 
 input:focus, textarea:focus {
-  border-color: var(--accent);
+  border-color: var(--pink);
 }
 
 .btn {
-  display: inline-block;
   padding: 0.8rem 2.5rem;
-  border: 1px solid var(--accent);
-  border-radius: var(--radius);
+  border: 3px solid var(--pink);
+  border-radius: 50px;
   background: transparent;
-  color: var(--accent);
-  font-family: 'Space Mono', monospace;
-  font-size: 0.8rem;
-  letter-spacing: 2px;
-  text-transform: lowercase;
+  color: var(--pink);
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s, color 0.3s;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
 }
 
 .btn:hover {
-  background: var(--accent);
+  background: var(--pink);
   color: var(--bg);
+  transform: scale(1.05);
 }
 
 .form-msg {
-  margin-top: 0.8rem;
-  font-size: 0.85rem;
-  color: var(--accent);
+  margin-top: 0.6rem;
+  color: var(--green);
+  font-weight: 600;
 }
 
-/* ── footer ── */
+/* ── Footer ── */
 footer {
   text-align: center;
   padding: 2.5rem;
-  font-size: 0.7rem;
-  letter-spacing: 2px;
-  text-transform: lowercase;
+  font-size: 0.9rem;
   color: var(--muted);
-  border-top: 1px solid rgba(212, 165, 116, 0.08);
+  border-top: 3px solid var(--border);
 }
 
-/* ── responsive ── */
-@media (max-width: 600px) {
-  .hero h1 { font-size: 4rem; letter-spacing: 6px; }
-  nav { padding: 1rem 1.2rem; }
-  nav ul { gap: 1rem; }
-  nav a { font-size: 0.7rem; }
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .hero h1 { font-size: 4rem; }
+  nav { padding: 0.8rem 1rem; }
+  nav ul { gap: 0.8rem; }
+  nav a { font-size: 0.8rem; }
+  .mc-blocks { grid-template-columns: repeat(3, 40px); }
+  .mc-block { width: 40px; height: 40px; }
 }

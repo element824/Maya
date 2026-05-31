@@ -1,6 +1,6 @@
 function handleSubmit(e) {
   e.preventDefault();
-  document.getElementById('form-msg').textContent = 'sent — talk soon';
+  document.getElementById('form-msg').textContent = 'sent! ♪';
   e.target.reset();
 }
 
@@ -13,7 +13,7 @@ const observer = new IntersectionObserver(
   { threshold: 0.1 }
 );
 
-document.querySelectorAll('section, .grid-item').forEach((el) => {
+document.querySelectorAll('section, .music-card, .movie-card, .game-panel, .liminal-card').forEach((el) => {
   el.classList.add('fade-in');
   observer.observe(el);
 });
@@ -29,10 +29,5 @@ s.textContent = `
     opacity: 1;
     transform: translateY(0);
   }
-  .grid-item.fade-in { transition-delay: calc(var(--i, 0) * 0.1s); }
 `;
 document.head.appendChild(s);
-
-document.querySelectorAll('.grid-item').forEach((item, i) => {
-  item.style.setProperty('--i', i);
-});
